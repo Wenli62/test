@@ -1,0 +1,20 @@
+version: 0.0
+os: linux
+files:
+- source: .
+  destination: /etherpad
+hooks:
+  BeforeInstall:
+  - location: hook_before_install.sh
+    timeout: 60
+  AfterInstall:
+  - location: hook_after_install.sh
+    timeout: 60
+  ApplicationStart:
+  - location: hook_application_start.sh
+    timeout: 180
+    runas: ec2-user
+  ValidateService:
+  - location: hook_validate_service.sh
+    timeout: 300
+    runas: ec2-user
